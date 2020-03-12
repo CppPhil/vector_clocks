@@ -6,7 +6,7 @@ QT       += core gui widgets network
 TARGET    = VC
 TEMPLATE  = app
 
-CONFIG   += c++17
+CONFIG   += c++17 warn_off
 
 DESTDIR      = $$PWD/binaries/$$DESTINATION_PATH
 OBJECTS_DIR  = $$PWD/build/$$DESTINATION_PATH/.obj
@@ -23,16 +23,16 @@ CONFIG(relase, debug|release) {
 
 SOURCES     += \
     src/main.cpp \
-    src/mainwindow.cpp
+    src/main_window.cpp
 
 HEADERS     += \
-    include/test.hpp \
-    include/mainwindow.hpp
+    include/main_window.hpp
 
 FORMS       += \
-    src/mainwindow.ui 
+    src/main_window.ui
 
 INCLUDEPATH += \
+    include \
     external/philslib/include \
     external/optional \
     external/expected
