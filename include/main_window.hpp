@@ -5,11 +5,11 @@
 
 namespace vc {
 class main_window : public QMainWindow {
-    Q_OBJECT
+  Q_OBJECT
 
 public:
-    explicit main_window(QWidget* parent = nullptr);
+  explicit main_window(QWidget* parent = nullptr);
 
-    Ui::MainWindow          m_ui;
+  Ui::MainWindow m_ui;
 };
 } // namespace vc

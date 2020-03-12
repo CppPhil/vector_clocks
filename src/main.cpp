@@ -2,12 +2,11 @@
 
 #include <QApplication>
 
-int main(int argc, char* argv[])
-{
-    QApplication application(argc, argv);
-    vc::main_window main_window;
+int main(int argc, char* argv[]) {
+  QApplication application(argc, argv);
+  vc::main_window main_window;
 
-    main_window.show();
+  main_window.show();
 
-    return application.exec();
+  return application.exec();
 }
