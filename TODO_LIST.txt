@@ -1,5 +1,10 @@
 Write a simple system using threads / processes employing sockets to send messages with vector_timestamps to each other, producing a ShiViz-parseable log. 
 
+serialize to binary format
+or serialize to JSON
+
+merge the logs produced
+
 vector clock:
  DistributedClocks: https://github.com/DistributedClocks/CppVector
  Voldemort: https://github.com/voldemort/voldemort/tree/master/src/java/voldemort/versioning
