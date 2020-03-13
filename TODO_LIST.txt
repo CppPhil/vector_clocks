@@ -1,3 +1,17 @@
+vector clock type
+
+some data format
+
+1 TCP server in a thread
+contains: {
+    actor_id
+}
+
+1 TCP client in a thread
+contains: {
+    actor_id
+}
+
 Write a simple system using threads / processes employing sockets to send messages with vector_timestamps to each other, producing a ShiViz-parseable log. 
 
 serialize to binary format

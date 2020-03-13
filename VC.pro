@@ -22,10 +22,12 @@ CONFIG(relase, debug|release) {
 }
 
 SOURCES     += \
+    src/actor_id.cpp \
     src/main.cpp \
     src/main_window.cpp
 
 HEADERS     += \
+    include/actor_id.hpp \
     include/main_window.hpp
 
 FORMS       += \
