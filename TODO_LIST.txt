@@ -1,6 +1,12 @@
-vector clock type
+Documentation
+ -> Doxygen
+ 
+Migration to CMake
+ 
+Unit Tests
 
 some data format
+ -> make a plan for it
 
 1 TCP server in a thread
 contains: {

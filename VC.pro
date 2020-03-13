@@ -23,12 +23,18 @@ CONFIG(relase, debug|release) {
 
 SOURCES     += \
     src/actor_id.cpp \
+    src/error.cpp \
     src/main.cpp \
-    src/main_window.cpp
+    src/main_window.cpp \
+    src/vector_timestamp.cpp
 
 HEADERS     += \
     include/actor_id.hpp \
+    include/error.hpp \
+    include/hton.hpp \
     include/main_window.hpp \
+    include/ntoh.hpp \
+    include/source_location.hpp \
     include/vector_timestamp.hpp
 
 FORMS       += \
@@ -37,6 +43,5 @@ FORMS       += \
 INCLUDEPATH += \
     include \
     external/philslib/include \
-    external/optional \
-    external/expected
-
+    external/optional/include \
+    external/expected/include
