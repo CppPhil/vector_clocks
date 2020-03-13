@@ -28,7 +28,8 @@ SOURCES     += \
 
 HEADERS     += \
     include/actor_id.hpp \
-    include/main_window.hpp
+    include/main_window.hpp \
+    include/vector_timestamp.hpp
 
 FORMS       += \
     src/main_window.ui
