@@ -14,50 +14,66 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
+find_package(Threads REQUIRED)
 find_package(Qt5 COMPONENTS Core Gui Widgets Network REQUIRED)
 
-set(EXE_NAME vector_clocks_app)
+set(LIB_NAME vector_clocks_lib)
 
 set(
-    EXE_UIS
-    include/main_window.ui
-)
-
-set(
-    EXE_HEADERS
+    LIB_HEADERS
     include/actor_id.hpp
     include/error.hpp
     include/hton.hpp
-    include/main_window.hpp
     include/ntoh.hpp
     include/source_location.hpp
     include/vector_timestamp.hpp
 )
 
 set(
-    EXE_SOURCES
+    LIB_SOURCES
     src/actor_id.cpp
     src/error.cpp
-    src/main.cpp
-    src/main_window.cpp
     src/vector_timestamp.cpp
 )
 
-add_executable(
-    ${EXE_NAME}
-    ${EXE_UIS}
-    ${EXE_HEADERS}
-    ${EXE_SOURCES}
+add_library(
+    ${LIB_NAME}
+    OBJECT
+    ${LIB_HEADERS}
+    ${LIB_SOURCES}
 )
 
-target_link_libraries(${EXE_NAME} PRIVATE Qt5::Core Qt5::Gui Qt5::Widgets Qt5::Network)
+target_link_libraries(
+    ${LIB_NAME}
+    PUBLIC
+    Threads::Threads
+)
+
+target_link_libraries(${LIB_NAME} PUBLIC Qt5::Core Qt5::Gui Qt5::Widgets Qt5::Network)
 
 target_include_directories(
-    ${EXE_NAME} 
-    PRIVATE 
+    ${LIB_NAME} 
+    PUBLIC 
     ${vector_clocks_SOURCE_DIR}/include
     ${vector_clocks_SOURCE_DIR}/external/philslib/include
     ${vector_clocks_SOURCE_DIR}/external/optional/include
     ${vector_clocks_SOURCE_DIR}/external/expected/include
+)
+
+
+set(EXE_NAME vector_clocks_app)
+
+add_executable(
+    ${EXE_NAME}
+    include/main_window.ui
+    include/main_window.hpp
+    src/main.cpp
+    src/main_window.cpp
+)
+
+target_link_libraries(
+    ${EXE_NAME}
+    PRIVATE
+    ${LIB_NAME}
 )
 
