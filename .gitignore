@@ -548,3 +548,6 @@ MigrationBackup/
 # Doxygen generated documentation
 doc
 
+# build directory
+build
+
