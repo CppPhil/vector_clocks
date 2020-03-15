@@ -17,7 +17,7 @@ TEST(ntoh_test, test_byte_order)
     static_assert(ary.size() == sizeof(i), "uint32_t isn't 4 bytes wide.");
     memcpy(&i, ary.data(), sizeof(i));
 
-    const auto j = ntoh(i);
+    const auto j = vc::ntoh(i);
 
 #if Q_BYTE_ORDER == Q_LITTLE_ENDIAN
     std::array<pl::byte, 4> array;
