@@ -1,0 +1,7 @@
+u64 BE:
+    length of following vector_timestamp in bytes
+vector_timestamp (binary)
+u64 BE:
+    length of payload in bytes
+payload (binary (variable length))
+

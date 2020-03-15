@@ -29,6 +29,7 @@ set(
     include/ntoh.hpp
     include/source_location.hpp
     include/vector_timestamp.hpp
+    include/packet.hpp
 )
 
 set(
@@ -36,6 +37,7 @@ set(
     src/actor_id.cpp
     src/error.cpp
     src/vector_timestamp.cpp
+    src/packet.cpp
 )
 
 add_library(
@@ -87,6 +89,7 @@ set(
     tests/src/ntoh.cpp
     tests/src/hton.cpp
     tests/src/vector_timestamp.cpp
+    tests/src/packet.cpp
 )
 
 add_executable(

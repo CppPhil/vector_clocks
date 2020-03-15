@@ -1,8 +1,10 @@
 Documentation
  -> Doxygen
 
-some data format
- -> make a plan for it
+Have a client and a server.
+Have them send each other packets.
+Increment & merge the vector timestamps as required.
+Write the appropriate logs.
 
 1 TCP server in a thread
 contains: {
