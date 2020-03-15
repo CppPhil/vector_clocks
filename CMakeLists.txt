@@ -86,6 +86,7 @@ set(
     tests/src/main.cpp
     tests/src/ntoh.cpp
     tests/src/hton.cpp
+    tests/src/vector_timestamp.cpp
 )
 
 add_executable(

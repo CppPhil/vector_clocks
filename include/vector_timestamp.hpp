@@ -26,6 +26,12 @@ public:
 
   [[nodiscard]] std::vector<pl::byte> serialize_to_binary() const;
 
+  friend bool operator==(const vector_timestamp& lhs,
+                         const vector_timestamp& rhs);
+
+  friend bool operator!=(const vector_timestamp& lhs,
+                         const vector_timestamp& rhs);
+
 private:
   explicit vector_timestamp(
     std::unordered_map<actor_id, uint64_t>&& map) noexcept;

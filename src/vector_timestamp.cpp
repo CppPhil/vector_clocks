@@ -29,7 +29,7 @@ vector_timestamp::deserialize_from_binary(const void* pointer,
 
   const auto pair_count = read();
 
-  if ((pair_count * sizeof(uint64_t)) != (byte_count - sizeof(uint64_t)))
+  if ((pair_count * (2 * sizeof(uint64_t))) != (byte_count - sizeof(uint64_t)))
     return VC_UNEXPECTED("The pair count given was invalid.");
 
   std::unordered_map<actor_id, uint64_t> map;
@@ -108,6 +108,14 @@ vector_timestamp::serialize_to_binary() const {
   }
 
   return buffer;
+}
+
+bool operator==(const vector_timestamp& lhs, const vector_timestamp& rhs) {
+  return lhs.data_ == rhs.data_;
+}
+
+bool operator!=(const vector_timestamp& lhs, const vector_timestamp& rhs) {
+  return !(lhs == rhs);
 }
 
 vector_timestamp::vector_timestamp(
