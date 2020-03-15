@@ -85,6 +85,7 @@ set(
     TEST_SOURCES
     tests/src/main.cpp
     tests/src/ntoh.cpp
+    tests/src/hton.cpp
 )
 
 add_executable(
