@@ -8,6 +8,7 @@ readonly DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 # Directories
 readonly SRC_DIR=$DIR/src
 readonly INCLUDE_DIR=$DIR/include
+readonly TEST_DIR=$DIR/tests
 
 # files
 readonly DOT_CLANG_FORMAT=$DIR/.clang-format
@@ -33,5 +34,7 @@ wget --quiet https://raw.githubusercontent.com/actor-framework/actor-framework/m
 # Format the source files.
 format $SRC_DIR
 format $INCLUDE_DIR
+format $TEST_DIR
 
 exit 0
+

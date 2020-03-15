@@ -17,6 +17,8 @@ set(CMAKE_AUTOUIC ON)
 find_package(Threads REQUIRED)
 find_package(Qt5 COMPONENTS Core Gui Widgets Network REQUIRED)
 
+add_subdirectory(external/googletest)
+
 set(LIB_NAME vector_clocks_lib)
 
 set(
@@ -76,4 +78,20 @@ target_link_libraries(
     PRIVATE
     ${LIB_NAME}
 )
+
+set(TEST_NAME vector_clocks_tests)
+
+set(
+    TEST_SOURCES
+    tests/src/main.cpp
+    tests/src/ntoh.cpp
+)
+
+add_executable(
+    ${TEST_NAME}
+    ${TEST_HEADERS}
+    ${TEST_SOURCES}
+)
+
+target_link_libraries(${TEST_NAME} PRIVATE ${LIB_NAME} gtest)
 
