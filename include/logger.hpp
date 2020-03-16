@@ -1,4 +1,6 @@
 #pragma once
+#include <cstdio>
+
 #include <mutex>
 #include <ostream>
 #include <utility>
@@ -24,14 +26,15 @@ public:
     std::lock_guard<std::mutex> lock_guard(mu_);
     (void) lock_guard;
 
-    (*sink_) << fmt::format("{} {} {} {} {}:{} ", vstamp, logger_level, aid,
-                            function, file, line);
+    const auto str
+      = fmt::format("{} {} {} {} {}:{} \"{}\"", vstamp, logger_level, aid,
+                    function, file, line,
+                    fmt::format(std::forward<FormatString>(format_string),
+                                std::forward<Ts>(xs)...));
 
-    (*sink_) << '"'
-             << fmt::format(std::forward<FormatString>(format_string),
-                            std::forward<Ts>(xs)...)
-             << "\"\n"
-             << std::flush;
+    (*sink_) << str << std::endl;
+
+    std::printf("Wrote \"%s\" to log.\n", str.data());
 
     return *this;
   }
