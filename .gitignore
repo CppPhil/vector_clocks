@@ -546,7 +546,7 @@ MigrationBackup/
 # End of https://www.gitignore.io/api/c,qt,qml,c++,linux,windows,qtcreator,notepadpp,visualstudio,visualstudiocode
 
 # Doxygen generated documentation
-doc
+docs
 
 # build directory
 build
