@@ -9,7 +9,9 @@
 
 namespace vc {
 main_window::main_window(QWidget* parent)
-  : QMainWindow(parent), ofs_("logfile.log"), logger_(ofs_) {
+  : QMainWindow(parent),
+    ofs_("logfile.log", std::ios_base::out | std::ios_base::trunc),
+    logger_(ofs_) {
   assert(ofs_.operator bool() && "Couldn't open log file!");
 
   setWindowTitle("Vector clocks");
