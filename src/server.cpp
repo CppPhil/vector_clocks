@@ -121,7 +121,7 @@ void server::handle_client_request(QTcpSocket* socket) {
 
       vstamp_.merge(their_vc);
 
-      VC_LOG_INFO(logger_, vstamp_, aid_, "Server received \"{}\".",
+      VC_LOG_INFO(logger_, vstamp_, aid_, "RECV Server received \"{}\".",
                   give_time_msg);
 
       // Tick own clock (send event)
@@ -141,7 +141,7 @@ void server::handle_client_request(QTcpSocket* socket) {
 
       const auto response_packet_binary = response_packet.serialize_to_binary();
 
-      VC_LOG_INFO(logger_, vstamp_, aid_, "Server sent \"{}\".",
+      VC_LOG_INFO(logger_, vstamp_, aid_, "SENT Server sent \"{}\".",
                   response_payload.toStdString());
 
       if (socket->write(

@@ -7,7 +7,7 @@ logger::logger(std::ostream& sink) : mu_(), sink_(&sink) {
 
   constexpr char regex[] = "(?<clock>\\S+) (?<level>\\S+) "
                            "(?<host>\\S+) (?<function>\\S+) "
-                           "(?<file>\\S+):(?<line>\\d+) (?<message>.+)";
+                           "(?<file>\\S+):(?<line>\\d+) (?<event>.+)";
 
   (*sink_) << regex << "\n\n" << std::flush;
 

@@ -52,7 +52,8 @@ void client::request_time_from_server() {
   const packet pkt(vstamp_binary.data(), vstamp_binary.size(), payload,
                    sizeof(payload));
 
-  VC_LOG_INFO(logger_, vstamp_, aid_, "Client sent \"{}\" to server.", payload);
+  VC_LOG_INFO(logger_, vstamp_, aid_, "SEND Client sent \"{}\" to server.",
+              payload);
 
   const auto pkt_bin = pkt.serialize_to_binary();
 
@@ -128,6 +129,6 @@ void client::on_ready_read() {
   vstamp_.merge(their_vc);
 
   VC_LOG_INFO(logger_, vstamp_, aid_,
-              "Client received time from server: \"{}\".", buf.data());
+              "RECV Client received time from server: \"{}\".", buf.data());
 }
 } // namespace vc
