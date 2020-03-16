@@ -1,8 +1,9 @@
 #pragma once
 #include <fstream>
 
+#include <QMainWindow>
+
 #include "logger.hpp"
-#include "ui_main_window.h"
 
 namespace vc {
 class main_window : public QMainWindow {
@@ -14,7 +15,6 @@ public:
 private:
   void on_button_click();
 
-  Ui::MainWindow ui_;
   std::ofstream ofs_;
   logger logger_;
 };

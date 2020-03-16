@@ -84,7 +84,6 @@ set(EXE_NAME vector_clocks_app)
 
 add_executable(
     ${EXE_NAME}
-    include/main_window.ui
     include/main_window.hpp
     src/main.cpp
     src/main_window.cpp
@@ -114,4 +113,3 @@ add_executable(
 )
 
 target_link_libraries(${TEST_NAME} PRIVATE ${LIB_NAME} gtest)
-

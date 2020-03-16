@@ -1,19 +1,21 @@
 #include <cassert>
 #include <cstdio>
 
+#include <QPushButton>
+
 #include "client.hpp"
 #include "main_window.hpp"
 #include "server.hpp"
 
 namespace vc {
 main_window::main_window(QWidget* parent)
-  : QMainWindow(parent), ui_(), ofs_("logfile.log"), logger_(ofs_) {
+  : QMainWindow(parent), ofs_("logfile.log"), logger_(ofs_) {
   assert(ofs_.operator bool() && "Couldn't open log file!");
 
   setWindowTitle("Vector clocks");
 
-  connect(ui_.pushButton, &QAbstractButton::clicked, this,
-          &main_window::on_button_click);
+  auto* button = new QPushButton("Run", this);
+  connect(button, &QPushButton::clicked, this, &main_window::on_button_click);
 }
 
 void main_window::on_button_click() {

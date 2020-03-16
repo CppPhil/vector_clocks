@@ -27,9 +27,11 @@ public:
     (*sink_) << fmt::format("{} {} {} {} {}:{} ", vstamp, logger_level, aid,
                             function, file, line);
 
-    (*sink_) << fmt::format(std::forward<FormatString>(format_string),
+    (*sink_) << '"'
+             << fmt::format(std::forward<FormatString>(format_string),
                             std::forward<Ts>(xs)...)
-             << '\n';
+             << "\"\n"
+             << std::flush;
 
     return *this;
   }
