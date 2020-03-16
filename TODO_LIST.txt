@@ -1,27 +1,3 @@
-Have a client and a server.
-Have them send each other packets.
-Increment & merge the vector timestamps as required.
-Write the appropriate logs.
-
-some sort of time server
-
-1 TCP server in a thread
-contains: {
-    actor_id
-}
-
-1 TCP client in a thread
-contains: {
-    actor_id
-}
-
-Write a simple system using threads / processes employing sockets to send messages with vector_timestamps to each other, producing a ShiViz-parseable log. 
-
-serialize to binary format
-or serialize to JSON
-
-merge the logs produced
-
 vector clock:
  DistributedClocks: https://github.com/DistributedClocks/CppVector
  Voldemort: https://github.com/voldemort/voldemort/tree/master/src/java/voldemort/versioning
