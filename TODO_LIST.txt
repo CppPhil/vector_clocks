@@ -3,6 +3,8 @@ Have them send each other packets.
 Increment & merge the vector timestamps as required.
 Write the appropriate logs.
 
+some sort of time server
+
 1 TCP server in a thread
 contains: {
     actor_id

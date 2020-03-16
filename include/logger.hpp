@@ -1,4 +1,5 @@
 #pragma once
+#include <mutex>
 #include <ostream>
 #include <utility>
 
@@ -20,16 +21,21 @@ public:
   logger& log(const vector_timestamp& vstamp, log_level logger_level,
               actor_id aid, const char* function, const char* file,
               const char* line, FormatString&& format_string, Ts&&... xs) {
+    std::lock_guard<std::mutex> lock_guard(mu_);
+    (void) lock_guard;
+
     (*sink_) << fmt::format("{} {} {} {} {}:{} ", vstamp, logger_level, aid,
                             function, file, line);
 
     (*sink_) << fmt::format(std::forward<FormatString>(format_string),
-                            std::forward<Ts>(xs)...);
+                            std::forward<Ts>(xs)...)
+             << '\n';
 
     return *this;
   }
 
 private:
+  std::mutex mu_;
   std::ostream* sink_;
 };
 } // namespace vc
