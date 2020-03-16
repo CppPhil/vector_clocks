@@ -1,4 +1,5 @@
 #pragma once
+#include <iosfwd>
 #include <unordered_map>
 #include <vector>
 
@@ -81,6 +82,9 @@ public:
    */
   friend bool operator!=(const vector_timestamp& lhs,
                          const vector_timestamp& rhs);
+
+  friend std::ostream& operator<<(std::ostream& os,
+                                  const vector_timestamp& vstamp);
 
 private:
   explicit vector_timestamp(

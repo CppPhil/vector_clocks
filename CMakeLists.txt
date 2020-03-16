@@ -18,6 +18,7 @@ find_package(Threads REQUIRED)
 find_package(Qt5 COMPONENTS Core Gui Widgets Network REQUIRED)
 
 add_subdirectory(external/googletest)
+add_subdirectory(external/fmtlib)
 
 set(LIB_NAME vector_clocks_lib)
 
@@ -30,6 +31,8 @@ set(
     include/source_location.hpp
     include/vector_timestamp.hpp
     include/packet.hpp
+    include/logger.hpp
+    include/log_level.hpp
 )
 
 set(
@@ -38,6 +41,8 @@ set(
     src/error.cpp
     src/vector_timestamp.cpp
     src/packet.cpp
+    src/logger.cpp
+    src/log_level.cpp
 )
 
 add_library(
@@ -53,6 +58,12 @@ target_link_libraries(
     Threads::Threads
 )
 
+target_link_libraries(
+    ${LIB_NAME}
+    PUBLIC
+    fmt::fmt
+)
+
 target_link_libraries(${LIB_NAME} PUBLIC Qt5::Core Qt5::Gui Qt5::Widgets Qt5::Network)
 
 target_include_directories(
@@ -63,7 +74,6 @@ target_include_directories(
     ${vector_clocks_SOURCE_DIR}/external/optional/include
     ${vector_clocks_SOURCE_DIR}/external/expected/include
 )
-
 
 set(EXE_NAME vector_clocks_app)
 

@@ -1,8 +1,3 @@
-Add fmtlib
-Add serialization using operator<<(std::ostream&, ...)
-Add virtual File type
-Add logger type that uses the File type
-
 Have a client and a server.
 Have them send each other packets.
 Increment & merge the vector timestamps as required.

@@ -1,6 +1,8 @@
 #pragma once
 #include <cstdint>
 
+#include <iosfwd>
+
 #include <QString>
 
 #include <pl/total_order.hpp>
@@ -54,6 +56,14 @@ public:
                                                 actor_id rhs) noexcept {
     return lhs.value() < rhs.value();
   }
+
+  /**
+   * Prints an actor_id to an ostream.
+   * @param os The ostream to print to.
+   * @param aid The actor_id to print.
+   * @return A reference to `os`.
+   */
+  friend std::ostream& operator<<(std::ostream& os, const actor_id& aid);
 
 private:
   uint64_t aid_;

@@ -1,5 +1,6 @@
 #include <cstring>
 
+#include <ostream>
 #include <utility>
 
 #include "hton.hpp"
@@ -116,6 +117,10 @@ bool operator==(const vector_timestamp& lhs, const vector_timestamp& rhs) {
 
 bool operator!=(const vector_timestamp& lhs, const vector_timestamp& rhs) {
   return !(lhs == rhs);
+}
+
+std::ostream& operator<<(std::ostream& os, const vector_timestamp& vstamp) {
+  return os << vstamp.to_json().toStdString();
 }
 
 vector_timestamp::vector_timestamp(
