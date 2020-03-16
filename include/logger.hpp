@@ -23,6 +23,11 @@ public:
   logger& log(const vector_timestamp& vstamp, log_level logger_level,
               actor_id aid, const char* function, const char* file,
               const char* line, FormatString&& format_string, Ts&&... xs) {
+    if (logger_level != log_level::info) {
+      fprintf(stderr, "Log level isn't info!\n");
+      return *this;
+    }
+
     std::lock_guard<std::mutex> lock_guard(mu_);
     (void) lock_guard;
 
