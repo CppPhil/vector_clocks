@@ -1,7 +1,8 @@
 #pragma once
+#include <fstream>
+
+#include "logger.hpp"
 #include "ui_main_window.h"
-#include <QPixmap> // QPixmap
-#include <memory>  // std::unique_ptr
 
 namespace vc {
 class main_window : public QMainWindow {
@@ -10,6 +11,11 @@ class main_window : public QMainWindow {
 public:
   explicit main_window(QWidget* parent = nullptr);
 
-  Ui::MainWindow m_ui;
+private:
+  void on_button_click();
+
+  Ui::MainWindow ui_;
+  std::ofstream ofs_;
+  logger logger_;
 };
 } // namespace vc

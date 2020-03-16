@@ -14,7 +14,15 @@
    <string>Vector clocks</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QVBoxLayout" name="verticalLayout"/>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QPushButton" name="pushButton">
+      <property name="text">
+       <string>Start</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
@@ -22,7 +30,7 @@
      <x>0</x>
      <y>0</y>
      <width>1349</width>
-     <height>25</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>
