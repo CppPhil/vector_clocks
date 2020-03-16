@@ -7,6 +7,13 @@
 #include <pl/meta/remove_cvref.hpp>
 
 namespace vc {
+/**
+ * Converts something in network byte order to host byte order.
+ * @tparam T The type of the object to convert to host byte order.
+ * @param x The object to convert.
+ * @return The result in host byte order.
+ * @warning The argument given must be in network byte order!
+ */
 template <class T>
 inline T ntoh(const T& x) {
   static_assert(std::is_integral_v<pl::meta::remove_cvref_t<T>>,

@@ -7,6 +7,13 @@
 #include <pl/meta/remove_cvref.hpp>
 
 namespace vc {
+/**
+ * Converts the argument given to network byte order.
+ * @tparam T The type of the argument given.
+ * @param x The argument to convert to network byte order.
+ * @return The result in network byte order.
+ * @warning The argument given must be in host byte order!
+ */
 template <class T>
 inline T hton(const T& x) {
   static_assert(std::is_integral_v<pl::meta::remove_cvref_t<T>>,
