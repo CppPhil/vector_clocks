@@ -1,6 +1,3 @@
-Documentation
- -> Doxygen
-
 Have a client and a server.
 Have them send each other packets.
 Increment & merge the vector timestamps as required.
