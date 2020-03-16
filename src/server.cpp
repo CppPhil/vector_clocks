@@ -32,7 +32,13 @@ server::~server() {
 }
 
 [[nodiscard]] bool server::listen() {
-  return tcp_server_.listen(QHostAddress("127.0.0.1"), server_port);
+  const auto ret_val = tcp_server_.listen(QHostAddress("127.0.0.1"),
+                                          server_port);
+
+  if (ret_val)
+    is_listening_ = true;
+
+  return ret_val;
 }
 
 void server::setup_connections() {

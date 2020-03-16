@@ -35,6 +35,7 @@ set(
     include/log_level.hpp
     include/server.hpp
     include/server_port.hpp
+    include/client.hpp
 )
 
 set(
@@ -46,6 +47,7 @@ set(
     src/logger.cpp
     src/log_level.cpp
     src/server.cpp
+    src/client.cpp
 )
 
 add_library(
