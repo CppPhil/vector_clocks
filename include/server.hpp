@@ -35,7 +35,7 @@ public:
   /**
    * Shuts down the TCP server if it was started.
    */
-  virtual ~server() override;
+  ~server() override;
 
   /**
    * Listens for incoming connections.
@@ -64,7 +64,7 @@ private:
    * @param socket The socket to read from.
    * @return The packet received on success; otherwise error.
    */
-  tl::expected<packet, error> read_client_request(QTcpSocket* socket);
+  static tl::expected<packet, error> read_client_request(QTcpSocket* socket);
 
   /**
    * Handles an incoming request from a client.

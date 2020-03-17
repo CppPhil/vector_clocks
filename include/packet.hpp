@@ -39,19 +39,19 @@ public:
    * Read accessor for the vector timestamp buffer.
    * @return A reference to the vector timestamp buffer.
    */
-  const std::vector<pl::byte>& vstamp_buffer() const noexcept;
+  [[nodiscard]] const std::vector<pl::byte>& vstamp_buffer() const noexcept;
 
   /**
    * Read accessor for the payload buffer.
    * @return A reference to the payload buffer.
    */
-  const std::vector<pl::byte>& payload_buffer() const noexcept;
+  [[nodiscard]] const std::vector<pl::byte>& payload_buffer() const noexcept;
 
   /**
    * Serializes this packet to binary data to be sent over the wire.
    * @return The resulting binary buffer.
    */
-  std::vector<pl::byte> serialize_to_binary() const;
+  [[nodiscard]] std::vector<pl::byte> serialize_to_binary() const;
 
 private:
   std::vector<pl::byte> vstamp_buffer_;

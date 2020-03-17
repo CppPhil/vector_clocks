@@ -1,8 +1,6 @@
 #include <cstdint>
 #include <cstdio>
 
-#include <utility>
-
 #include <QHostAddress>
 #include <QTimer>
 
@@ -14,7 +12,7 @@
 namespace vc {
 client::client(actor_id aid, logger& l, QObject* parent)
   : QObject(parent),
-    aid_(std::move(aid)),
+    aid_(aid),
     logger_(l),
     is_connected_(false),
     socket_(),

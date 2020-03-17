@@ -21,7 +21,7 @@ public:
    * Read accessor for this error's error message string.
    * @return A reference to the error message string.
    */
-  const std::string& message() const;
+  [[nodiscard]] const std::string& message() const;
 
   /**
    * Throws an exception of type `Exception` using this

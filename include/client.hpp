@@ -32,7 +32,7 @@ public:
   /**
    * Disconnects the client from the server if it has been connected.
    */
-  virtual ~client() override;
+  ~client() override;
 
   /**
    * Connects the client to the server.

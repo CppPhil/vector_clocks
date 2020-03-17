@@ -1,8 +1,6 @@
 #include <cstdint>
 #include <cstdio>
 
-#include <utility>
-
 #include <QTime>
 
 #include <pl/algo/ranged_algorithms.hpp>
@@ -14,7 +12,7 @@
 namespace vc {
 server::server(actor_id aid, logger& l, QObject* parent)
   : QObject(parent),
-    aid_(std::move(aid)),
+    aid_(aid),
     logger_(l),
     is_listening_(false),
     tcp_server_(PL_NO_PARENT),

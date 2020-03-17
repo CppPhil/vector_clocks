@@ -48,7 +48,7 @@ public:
   /**
    * Merges `other` into this vector_timestamp.
    * @param other The other vector_timestamp that shall be merged into this
-   * vector_timestamp.
+   *              vector_timestamp.
    * @return A reference to this vector_timestamp object.
    */
   vector_timestamp& merge(const vector_timestamp& other);
@@ -77,7 +77,7 @@ public:
   /**
    * Implements inequality comparison for vector_timestamps.
    * @param lhs The first vector_timestamp.
-   * @param rhs The second vecotr_timestamp.
+   * @param rhs The second vector_timestamp.
    * @return true if `lhs` and `rhs` are considered not equal; false otherwise.
    */
   friend bool operator!=(const vector_timestamp& lhs,
