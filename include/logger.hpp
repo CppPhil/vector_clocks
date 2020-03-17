@@ -15,14 +15,41 @@
 #include "vector_timestamp.hpp"
 
 namespace vc {
+/**
+ * Type for the logger.
+ */
 class logger {
 public:
+  /**
+   * Creates a logger using the given ostream.
+   * @param sink The ostream to write log entries to.
+   *
+   * Writes the ShiViz-compatible regex to `sink`.
+   */
   explicit logger(std::ostream& sink);
 
+  /**
+   * Writes a log entry to the log sink.
+   * @tparam FormatString The type of the fmtlib compatible format string to
+   *                      use.
+   * @tparam Ts Template type parameter pack for the arguments to fmt::format.
+   * @param vstamp The curent vector timestamp of the entity creating this log
+   *               entry.
+   * @param logger_level The log level to use.
+   * @param aid The actor_id of the entity creating this log entry.
+   * @param function The executing function creating this log entry.
+   * @param file The current file of the calling context.
+   * @param line The line of where the log entry is created.
+   * @param format_string The format string to pass to fmt::format.
+   * @param xs The arguments to pass to fmt::format.
+   * @return A reference to this object.
+   */
   template <class FormatString, class... Ts>
   logger& log(const vector_timestamp& vstamp, log_level logger_level,
               actor_id aid, const char* function, const char* file,
               const char* line, FormatString&& format_string, Ts&&... xs) {
+    // log_level shall be info, as that's the only level that the regex will
+    // accept right now.
     if (logger_level != log_level::info) {
       fprintf(stderr, "Log level isn't info!\n");
       return *this;

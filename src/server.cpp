@@ -27,6 +27,7 @@ server::~server() {
   if (is_listening_)
     tcp_server_.close();
 
+  // Free the memory occupied by the TCP sockets for the clients.
   for (auto* client : clients_)
     delete client;
 }
@@ -100,6 +101,7 @@ void server::handle_client_request(QTcpSocket* socket) {
   if (exp_pkt.has_value()) {
     const auto pkt = *exp_pkt;
 
+    // The payload that the client is expected to send.
     constexpr char give_time_msg[] = "GIEVTIMEPLX";
 
     if (pl::algo::equal(pkt.payload_buffer(), give_time_msg)) {
@@ -111,6 +113,7 @@ void server::handle_client_request(QTcpSocket* socket) {
         return;
       }
 
+      // Get the sending client's vector clock.
       const auto their_vc = *exp_their_vc;
 
       // Tick own clock (receive event)
@@ -119,6 +122,7 @@ void server::handle_client_request(QTcpSocket* socket) {
         return;
       }
 
+      // Merge it
       vstamp_.merge(their_vc);
 
       VC_LOG_INFO(logger_, vstamp_, aid_, "RECV Server received \"{}\".",
@@ -144,6 +148,7 @@ void server::handle_client_request(QTcpSocket* socket) {
       VC_LOG_INFO(logger_, vstamp_, aid_, "SENT Server sent \"{}\".",
                   response_payload.toStdString());
 
+      // Send the response to the client.
       if (socket->write(
             reinterpret_cast<const char*>(response_packet_binary.data()),
             response_packet_binary.size())

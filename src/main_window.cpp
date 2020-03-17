@@ -21,12 +21,14 @@ main_window::main_window(QWidget* parent)
 }
 
 void main_window::on_button_click() {
+  // Create the server
   auto* serv = new server(actor_id{1}, logger_, this);
   if (!serv->listen()) {
     fprintf(stderr, "Server failed to listen.\n");
     return;
   }
 
+  // Create the client
   auto* cl = new client(actor_id{2}, logger_, this);
   cl->connect();
 }

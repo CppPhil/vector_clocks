@@ -33,10 +33,12 @@ void client::connect() {
   QObject::connect(&socket_, &QIODevice::readyRead, this,
                    &client::on_ready_read);
 
+  // Request a new time stamp from the server every second.
   auto* timer = new QTimer(this);
   QObject::connect(timer, &QTimer::timeout, this,
                    &client::request_time_from_server);
-  timer->start(1000);
+  constexpr auto timer_timeout_ms = 1000;
+  timer->start(timer_timeout_ms);
 }
 
 void client::request_time_from_server() {
