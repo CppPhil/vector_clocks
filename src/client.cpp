@@ -27,7 +27,7 @@ client::~client() {
 }
 
 void client::connect() {
-  socket_.connectToHost(QHostAddress::Any, server_port);
+  socket_.connectToHost(QHostAddress("127.0.0.1"), server_port);
   is_connected_ = true;
 
   QObject::connect(&socket_, &QIODevice::readyRead, this,
