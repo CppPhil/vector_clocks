@@ -1,5 +1,2 @@
-vector clock:
- DistributedClocks: https://github.com/DistributedClocks/CppVector
- Voldemort: https://github.com/voldemort/voldemort/tree/master/src/java/voldemort/versioning
-
+set up jaeger-client-cpp somewhat
 
