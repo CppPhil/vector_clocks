@@ -28,6 +28,7 @@ find_package(Qt5 COMPONENTS Core Gui Widgets Network REQUIRED)
 
 add_subdirectory(external/googletest)
 add_subdirectory(external/fmtlib)
+set(BUILD_TESTING false)
 add_subdirectory(external/jaeger-client-cpp)
 
 set(LIB_NAME vector_clocks_lib)

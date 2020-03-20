@@ -40,6 +40,9 @@ void client::connect() {
 }
 
 void client::request_time_from_server() {
+  auto span = opentracing::Tracer::Global()->StartSpan(
+    "client: request_time_from_server");
+
   // Tick own vstamp for send event.
   if (!vstamp_.tick(aid_).has_value()) {
     fprintf(stderr, "Client couldn't tick its vector timestamp!\n");
@@ -63,9 +66,13 @@ void client::request_time_from_server() {
     fprintf(stderr, "Client couldn't send packet!\n");
     return;
   }
+
+  span->SetTag("payload", payload);
 }
 
 void client::on_ready_read() {
+  auto span = opentracing::Tracer::Global()->StartSpan("client: on_ready_read");
+
   auto* the_sender = sender();
 
   if (the_sender == nullptr)
@@ -130,5 +137,7 @@ void client::on_ready_read() {
 
   VC_LOG_INFO(logger_, vstamp_, aid_,
               "RECV Client received time from server: \"{}\".", buf.data());
+
+  span->SetTag("Response", buf);
 }
 } // namespace vc

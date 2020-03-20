@@ -2,6 +2,8 @@
 #include <QObject>
 #include <QTcpSocket>
 
+#include <jaegertracing/Tracer.h>
+
 #include <pl/annotations.hpp>
 #include <pl/noncopyable.hpp>
 

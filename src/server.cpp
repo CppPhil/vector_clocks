@@ -55,6 +55,8 @@ void server::on_new_connection() {
 }
 
 void server::on_client_ready_read() {
+  auto span = opentracing::Tracer::Global()->StartSpan("server: on_ready_read");
+
   auto* the_sender = sender();
 
   if (the_sender == nullptr)
@@ -65,10 +67,16 @@ void server::on_client_ready_read() {
   if (client == nullptr)
     return;
 
-  handle_client_request(client);
+  handle_client_request(client, *span);
 }
 
-tl::expected<packet, error> server::read_client_request(QTcpSocket* socket) {
+tl::expected<packet, error>
+server::read_client_request(QTcpSocket* socket,
+                            const opentracing::Span& parent_span) {
+  auto span = opentracing::Tracer::Global()->StartSpan(
+    "server: read_client_request",
+    {opentracing::ChildOf(&parent_span.context())});
+
   uint64_t vstamp_size;
   if (socket->read(reinterpret_cast<char*>(&vstamp_size), sizeof(vstamp_size))
       == -1)
@@ -93,8 +101,13 @@ tl::expected<packet, error> server::read_client_request(QTcpSocket* socket) {
                 payload_size);
 }
 
-void server::handle_client_request(QTcpSocket* socket) {
-  const auto exp_pkt = read_client_request(socket);
+void server::handle_client_request(QTcpSocket* socket,
+                                   const opentracing::Span& parent_span) {
+  auto span = opentracing::Tracer::Global()->StartSpan(
+    "server: handle_client_request",
+    {opentracing::ChildOf(&parent_span.context())});
+
+  const auto exp_pkt = read_client_request(socket, *span);
 
   if (exp_pkt.has_value()) {
     const auto pkt = *exp_pkt;
@@ -154,6 +167,9 @@ void server::handle_client_request(QTcpSocket* socket) {
         fprintf(stderr, "Server couldn't write response to client!\n");
         return;
       }
+
+      span->SetTag("Response", response_payload.toStdString());
+
     } else {
       fprintf(stderr, "Server received unexpected payload from client!\n");
       return;

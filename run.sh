@@ -14,7 +14,7 @@ readonly PREV_DIR=$(pwd)
 
 cd $DIR
 
-./build/vector_clocks_app
+./build/vector_clocks_app $DIR/config.yml
 
 cd $PREV_DIR
 

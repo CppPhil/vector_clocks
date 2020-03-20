@@ -5,6 +5,8 @@
 #include <QTcpServer>
 #include <QTcpSocket>
 
+#include <jaegertracing/Tracer.h>
+
 #include <pl/annotations.hpp>
 #include <pl/noncopyable.hpp>
 
@@ -62,15 +64,19 @@ private:
   /**
    * Reads a packet from a TCP socket connected to a client.
    * @param socket The socket to read from.
+   * @param parent_span The parent tracing span.
    * @return The packet received on success; otherwise error.
    */
-  static tl::expected<packet, error> read_client_request(QTcpSocket* socket);
+  static tl::expected<packet, error>
+  read_client_request(QTcpSocket* socket, const opentracing::Span& parent_span);
 
   /**
    * Handles an incoming request from a client.
    * @param socket The socket connected to the sending client.
+   * @param parent_span The parent tracing span.
    */
-  void handle_client_request(QTcpSocket* socket);
+  void handle_client_request(QTcpSocket* socket,
+                             const opentracing::Span& parent_span);
 
   actor_id aid_;
   logger& logger_;
