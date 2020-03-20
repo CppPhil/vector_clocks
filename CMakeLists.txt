@@ -75,6 +75,8 @@ target_link_libraries(
 
 target_link_libraries(${LIB_NAME} PUBLIC Qt5::Core Qt5::Gui Qt5::Widgets Qt5::Network)
 
+target_link_libraries(${LIB_NAME} PUBLIC ${vector_clocks_SOURCE_DIR}/external/jaeger-client-cpp/build/libjaegertracing.a)
+
 target_include_directories(
     ${LIB_NAME} 
     PUBLIC 
@@ -82,6 +84,8 @@ target_include_directories(
     ${vector_clocks_SOURCE_DIR}/external/philslib/include
     ${vector_clocks_SOURCE_DIR}/external/optional/include
     ${vector_clocks_SOURCE_DIR}/external/expected/include
+    ${vector_clocks_SOURCE_DIR}/external/jaeger-client-cpp/src
+    ${vector_clocks_SOURCE_DIR}/external/jaeger-client-cpp/build/src
 )
 
 set(EXE_NAME vector_clocks_app)
