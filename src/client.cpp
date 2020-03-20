@@ -67,7 +67,7 @@ void client::request_time_from_server() {
     return;
   }
 
-  span->SetTag("payload", payload);
+  span->SetTag("payload", &payload[0]);
 }
 
 void client::on_ready_read() {
