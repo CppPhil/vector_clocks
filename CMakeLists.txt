@@ -19,6 +19,7 @@ find_package(Qt5 COMPONENTS Core Gui Widgets Network REQUIRED)
 
 add_subdirectory(external/googletest)
 add_subdirectory(external/fmtlib)
+add_subdirectory(external/yaml-cpp)
 
 execute_process(
     COMMAND bash ${vector_clocks_SOURCE_DIR}/scripts/build_jaeger_client_cpp.sh
@@ -40,6 +41,7 @@ set(
     include/server.hpp
     include/server_port.hpp
     include/client.hpp
+    include/setup_tracer.hpp
 )
 
 set(
@@ -52,6 +54,7 @@ set(
     src/log_level.cpp
     src/server.cpp
     src/client.cpp
+    src/setup_tracer.cpp
 )
 
 add_library(
@@ -65,17 +68,11 @@ target_link_libraries(
     ${LIB_NAME}
     PUBLIC
     Threads::Threads
-)
-
-target_link_libraries(
-    ${LIB_NAME}
-    PUBLIC
     fmt::fmt
+    Qt5::Core Qt5::Gui Qt5::Widgets Qt5::Network
+    yaml-cpp::yaml-cpp
+    ${vector_clocks_SOURCE_DIR}/external/jaeger-client-cpp/build/libjaegertracing.a
 )
-
-target_link_libraries(${LIB_NAME} PUBLIC Qt5::Core Qt5::Gui Qt5::Widgets Qt5::Network)
-
-target_link_libraries(${LIB_NAME} PUBLIC ${vector_clocks_SOURCE_DIR}/external/jaeger-client-cpp/build/libjaegertracing.a)
 
 target_include_directories(
     ${LIB_NAME} 
