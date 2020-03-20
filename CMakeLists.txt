@@ -20,6 +20,10 @@ find_package(Qt5 COMPONENTS Core Gui Widgets Network REQUIRED)
 add_subdirectory(external/googletest)
 add_subdirectory(external/fmtlib)
 
+execute_process(
+    COMMAND bash ${vector_clocks_SOURCE_DIR}/scripts/build_jaeger_client_cpp.sh
+)
+
 set(LIB_NAME vector_clocks_lib)
 
 set(
