@@ -1,5 +1,14 @@
 cmake_minimum_required(VERSION 3.15 FATAL_ERROR)
 
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+
+include(HunterGate)
+
+HunterGate(
+    URL "https://github.com/cpp-pm/hunter/archive/v0.23.249.tar.gz"
+    SHA1 "d45d77d8bba9da13e9290a180e0477e90accd89b"
+)
+
 project(vector_clocks VERSION 1.0.0)
 
 string(APPEND CMAKE_CXX_FLAGS " -Wall -Wextra -Wcast-align -Wcast-qual -Wfloat-equal -Wmissing-field-initializers -Wmissing-include-dirs -Wpointer-arith -Wstack-protector -Wstrict-aliasing=2 -Wunreachable-code -Wlogical-op -Wformat=2 -Wduplicated-cond -Wnull-dereference -Wrestrict -Wno-unknown-pragmas -Wno-unused-function -Wno-deprecated-copy -Wno-pessimizing-move")
@@ -19,10 +28,7 @@ find_package(Qt5 COMPONENTS Core Gui Widgets Network REQUIRED)
 
 add_subdirectory(external/googletest)
 add_subdirectory(external/fmtlib)
-
-execute_process(
-    COMMAND bash ${vector_clocks_SOURCE_DIR}/scripts/build_jaeger_client_cpp.sh
-)
+add_subdirectory(external/jaeger-client-cpp)
 
 set(LIB_NAME vector_clocks_lib)
 
@@ -69,7 +75,7 @@ target_link_libraries(
     Threads::Threads
     fmt::fmt
     Qt5::Core Qt5::Gui Qt5::Widgets Qt5::Network
-    ${vector_clocks_SOURCE_DIR}/external/jaeger-client-cpp/build/libjaegertracing.a
+    jaegertracing
 )
 
 target_include_directories(
@@ -79,8 +85,6 @@ target_include_directories(
     ${vector_clocks_SOURCE_DIR}/external/philslib/include
     ${vector_clocks_SOURCE_DIR}/external/optional/include
     ${vector_clocks_SOURCE_DIR}/external/expected/include
-    ${vector_clocks_SOURCE_DIR}/external/jaeger-client-cpp/src
-    ${vector_clocks_SOURCE_DIR}/external/jaeger-client-cpp/build/src
 )
 
 set(EXE_NAME vector_clocks_app)
