@@ -11,7 +11,7 @@ HunterGate(
 
 project(vector_clocks VERSION 1.0.0)
 
-string(APPEND CMAKE_CXX_FLAGS " -Wall -Wextra -Wcast-align -Wcast-qual -Wfloat-equal -Wmissing-field-initializers -Wmissing-include-dirs -Wpointer-arith -Wstack-protector -Wstrict-aliasing=2 -Wunreachable-code -Wlogical-op -Wformat=2 -Wduplicated-cond -Wnull-dereference -Wrestrict -Wno-unknown-pragmas -Wno-unused-function -Wno-deprecated-copy -Wno-pessimizing-move")
+string(APPEND CMAKE_CXX_FLAGS " -Wall -Wextra -Wcast-align -Wcast-qual -Wmissing-field-initializers -Wmissing-include-dirs -Wpointer-arith -Wstack-protector -Wstrict-aliasing=2 -Wunreachable-code -Wlogical-op -Wformat=2 -Wduplicated-cond -Wnull-dereference -Wno-unused-parameter")
 string(APPEND CMAKE_CXX_FLAGS_DEBUG " -g -O0")
 string(APPEND CMAKE_CXX_FLAGS_RELEASE " -O3 -march=native -funroll-loops -flto -fwhole-program -DNDEBUG")
 
