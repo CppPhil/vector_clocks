@@ -30,6 +30,7 @@ int main(int argc, char* argv[]) {
 
   main_window.show();
 
+  const auto ret_val = QApplication::exec();
   opentracing::Tracer::Global()->Close();
-  return QApplication::exec();
+  return ret_val;
 }
