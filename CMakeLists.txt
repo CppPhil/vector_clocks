@@ -69,7 +69,6 @@ target_link_libraries(
     Threads::Threads
     fmt::fmt
     Qt5::Core Qt5::Gui Qt5::Widgets Qt5::Network
-    yaml-cpp::yaml-cpp
     ${vector_clocks_SOURCE_DIR}/external/jaeger-client-cpp/build/libjaegertracing.a
 )
 
